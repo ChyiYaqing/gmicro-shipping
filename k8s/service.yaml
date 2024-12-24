@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping
+  labels:
+    app: shipping
+spec:
+  selector:
+    app: shipping
+  ports:
+    - name: grpc
+      port: 8280
+      protocol: TCP
+      targetPort: 8280
+  type: NodePort

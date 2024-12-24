@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+  labels:
+    app: shipping
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping
+  template:
+    metadata:
+      labels:
+        app: shipping
+    spec:
+      containers:
+        - name: shipping
+          image: chyiyaqing/shipping:v0.0.1
+          ports:
+            - containerPort: 8280
+          env:
+            - name: APPLICATION_PORT
+              value: "8280"
+            - name: SQLITE_DB
+              value: "/data/sqlite.db"
+            - name: TZ
+              value: "Asia/Shanghai"
+            - name: ENV
+              value: "development"
+          volumeMounts:
+            - name: sqlite-data
+              mountPath: /data
+      volumes:
+        - name: sqlite-data
+          persistentVolumeClaim:
+            claimName: sqlite-shipping-pvc
