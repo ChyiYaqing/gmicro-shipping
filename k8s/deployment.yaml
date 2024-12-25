@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: shipping
-          image: chyiyaqing/shipping:v0.0.1
+          image: chyiyaqing/shipping:v0.0.1-07a732a
           ports:
             - containerPort: 8280
           env:
